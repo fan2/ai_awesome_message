@@ -13,17 +13,17 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "878a0da16baca7fee1f4d88c191f5a8d5ed30d2f"
+      resolved-ref: "866eefb72f19de57e8804e2b0c977425a13a52f4"
       url: "https://github.com/pdliuw/airoute.git"
     source: git
-    version: "0.2.3-pre.1.0"
+    version: "2.2.0"
   async:
     dependency: transitive
     description:
       name: async
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.5.0"
+    version: "2.6.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -115,7 +115,7 @@ packages:
       name: source_span
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.8.0"
+    version: "1.8.1"
   stack_trace:
     dependency: transitive
     description:
@@ -150,7 +150,7 @@ packages:
       name: test_api
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.2.19"
+    version: "0.3.0"
   typed_data:
     dependency: transitive
     description:
