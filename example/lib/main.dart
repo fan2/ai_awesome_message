@@ -94,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RaisedButton.icon(
+            ElevatedButton.icon(
               onPressed: () {
                 Airoute.pushNamed(routeName: "/PopupPage");
               },

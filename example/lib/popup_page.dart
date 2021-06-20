@@ -153,10 +153,8 @@ class PopupState extends State<PopupPage> {
             ),
           ),
           Container(
-            child: RaisedButton.icon(
+            child: ElevatedButton.icon(
               icon: Icon(Icons.ondemand_video),
-              color: Colors.blue,
-              textColor: Colors.white,
               onPressed: () {
                 Airoute.pushNamed(
                   routeName: "/AiAwesomeMessageToolPage",

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 // Barrier color for a Cupertino modal barrier.
 // Extracted from https://developer.apple.com/design/resources/.
+// ignore: unused_element
 const Color _kModalBarrierColor = CupertinoDynamicColor.withBrightness(
   color: Color(0x33000000),
   darkColor: Color(0x7A000000),
