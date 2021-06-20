@@ -2,7 +2,7 @@
 # See https://dart.dev/tools/pub/glossary#lockfile
 packages:
   ai_awesome_message:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       path: ".."
       relative: true
@@ -11,11 +11,9 @@ packages:
   airoute:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "866eefb72f19de57e8804e2b0c977425a13a52f4"
-      url: "https://github.com/pdliuw/airoute.git"
-    source: git
+      name: airoute
+      url: "https://pub.flutter-io.cn"
+    source: hosted
     version: "2.2.0"
   async:
     dependency: transitive
