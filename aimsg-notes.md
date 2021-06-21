@@ -15,8 +15,9 @@
 
 AwesomeHelper.createAwesome 返回 AwesomeMessage。
 
-_AwesomeMessageState.build 返回 Align(child: _getAwesomeMessage(),)。  
-具体参考 _generateAwesomeMessage->_getAppropriateRowLayout 中 widget.icon 非空的布局。  
+_AwesomeMessageState.build 返回 Align(child: _getAwesomeMessage(),)。
+
+_getAwesomeMessage 中非 userInputForm 布局：Stack.children = [FutureBuilder, awesomeMessage]。
 
 ```Dart
 // awesome_message.dart
@@ -40,6 +41,101 @@ _AwesomeMessageState.build 返回 Align(child: _getAwesomeMessage(),)。
         awesomeMessage,
       ]
     )
+```
+
+### _generateAwesomeMessage
+
+- Container.child = Column;  
+- Column.children = [LinearProgressIndicator?, Row];  
+- Row.children = children: _getAppropriateRowLayout();  
+
+```Dart
+  Widget _generateAwesomeMessage() {
+    return Container(
+      key: backgroundBoxKey,
+      constraints: widget.maxWidth != null
+          ? BoxConstraints(maxWidth: widget.maxWidth!)
+          : null,
+      decoration: BoxDecoration(
+        color: widget.backgroundColor,
+        gradient: widget.backgroundGradient,
+        boxShadow: widget.boxShadows,
+        borderRadius: BorderRadius.circular(widget.borderRadius!),
+        border: widget.borderColor != null
+            ? Border.all(color: widget.borderColor!, width: widget.borderWidth!)
+            : null,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          widget.showProgressIndicator
+              ? LinearProgressIndicator(
+                  value: widget.progressIndicatorController != null
+                      ? _progressAnimation.value
+                      : null,
+                  backgroundColor: widget.progressIndicatorBackgroundColor,
+                  valueColor: widget.progressIndicatorValueColor,
+                )
+              : _emptyWidget,
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            children: _getAppropriateRowLayout(),
+          ),
+        ],
+      ),
+    );
+  }
+```
+
+### _getAppropriateRowLayout
+
+- RowLayout = [leftBarIndicator(FutureBuilder), ConstrainedBox(icon), Expanded];
+- Expanded.children = Column;  
+- Column.children = [Padding(titleText), Padding(messageText)];  
+
+```Dart
+// awesome_message.dart
+  List<Widget> _getAppropriateRowLayout() {
+
+    } else if (widget.icon != null && widget.mainButton == null) {
+      return <Widget>[
+        _buildLeftBarIndicator(),
+        ConstrainedBox(
+          constraints: BoxConstraints.tightFor(width: 42.0 + iconPadding),
+          child: _getIcon(),
+        ),
+        Expanded(
+          flex: 1,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              (_isTitlePresent)
+                  ? Padding(
+                      padding: EdgeInsets.only(
+                        top: widget.padding!.top,
+                        left: 4.0,
+                        right: widget.padding!.left,
+                      ),
+                      child: _getTitleText(),
+                    )
+                  : _emptyWidget,
+              Padding(
+                padding: EdgeInsets.only(
+                  top: _messageTopMargin,
+                  left: 4.0,
+                  right: widget.padding!.right,
+                  bottom: widget.padding!.bottom,
+                ),
+                child: widget.messageText ?? _getDefaultNotificationText(),
+              ),
+            ],
+          ),
+        ),
+      ];
+    }
+
+  }
 ```
 
 ## 使用方式
